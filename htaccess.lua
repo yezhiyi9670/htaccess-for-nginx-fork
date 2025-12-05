@@ -912,7 +912,7 @@ for statement in htaccess:gmatch('[^\r\n]+') do
 							-- TODO: Add match as environment variable
 							-- <FilesMatch "^(?<sitename>[^/]+)"> ==> %{env:MATCH_SITENAME}
 						end
-					elseif request_filename == test or request_filename:match(test:gsub('%.', '%.'):gsub('%?', '.'):gsub('*', '.+')) then
+					elseif request_filename ~= nil and (request_filename == test or request_filename:match(test:gsub('%.', '%.'):gsub('%?', '.'):gsub('*', '.+'))) then
 						use_block = true
 					end
 				elseif tag_name == 'limit' or tag_name == 'limitexcept' then
