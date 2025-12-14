@@ -6,6 +6,11 @@
 
 -- TODO: Sometimes code is executed 4 times for each request due to the way nginx handles requests. Make sure it is cached accordingly.
 
+local disable = ngx.var.disable_htaccess_lua
+if disable and disable ~= "" and disable ~= "0" then
+    return  -- Do nothing
+end
+
 -- Error function, returns HTTP 500 and logs an error message
 local fail = function(msg)
 	if msg then
